@@ -56,7 +56,16 @@ describe('Dolphin()', () => {
     expect(dolphin.energy).toEqual(70);
   });
 
-  xit('gets more tired by flipping after a few flips', () => {
+  xit('does not get more tired when flipping after jumping', () => {
+    const dolphin = new Dolphin();
+    for (var i = 0; i < 4; i++) { dolphin.jump() };
+
+    const preEnergy = dolphin.energy;
+    dolphin.flip();
+    expect(dolphin.energy).toEqual(preEnergy-8);
+  });
+
+  xit('gets more tired by flipping after 4 flips', () => {
     const dolphin = new Dolphin();
 
     for (var i = 0; i < 4; i++) { dolphin.flip() };
@@ -64,6 +73,15 @@ describe('Dolphin()', () => {
 
     dolphin.flip();
     expect(dolphin.energy).toEqual(53);
+  });
+
+  xit('does not get more tired when jumping after flipping', () => {
+    const dolphin = new Dolphin();
+    for (var i = 0; i < 4; i++) { dolphin.flip() };
+
+    const preEnergy = dolphin.energy;
+    dolphin.jump();
+    expect(dolphin.energy).toEqual(preEnergy-5);
   });
 
   xit('gets super tired after many jumps and flips', () => {
